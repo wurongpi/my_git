@@ -1,2 +1,21 @@
+import argparse
+
+
 def main():
-    print("Hello, world!")
+    args = parse_args()
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+
+    commands = parser.add_subparsers(dest='command')
+    commands.required = True
+
+    init_parser = commands.add_parser('init')
+    init_parser.set_defaults(func=init)
+
+    return parser.parse_args()
+
+
+def init(args):
+    print('Hello World!')
